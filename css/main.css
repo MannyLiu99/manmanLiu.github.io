@@ -1,0 +1,503 @@
+@font-face{
+	font-family:"raphaelicons";
+	src:url('fonts/raphaelicons-webfont.eot') format('eot'),
+		url('fonts/raphaelicons-webfont.svg') format('svg'),
+		url('fonts/raphaelicons-webfont.ttf') format('truetype'),
+		url('fonts/raphaelicons-webfont.woff') format('woff');
+	font-weight:normal;
+	font-style:normal;
+}
+body{
+	font-family:"Microsoft YaHei";
+	background:#ddd;
+	font-weight:400;
+	font-size:15px;
+	color:#333;
+	overflow:hidden;
+	-webkit-font-smoothing:antialiased;
+}
+a{
+	text-decoration:none;
+	color:#555;
+}
+
+.st-container{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	font-family:"Microsoft YaHei";
+}
+.st-container > input,
+.st-container > a{
+	width:20%;
+	height:34px;
+	line-height:34px;
+	position:fixed;
+	bottom:0;
+	cursor:pointer;
+}
+.st-container > input{
+	opacity:0;
+	z-index:1000;
+}
+.st-container > a{
+	z-index:10;
+	font-weight:700;
+	font-size:16px;
+	background:#e23a6e;
+	text-align:center;
+	color:#fff;
+	text-shadow:1px 1px 1px rgba(151,24,64,0.2);
+}
+#st-control-1,#st-control-1 + a{/*id为st-control-1，以及紧跟其后面的那个并列的a标签；如果+ 换成~ 表示所有的a */
+	left:0%;
+}
+#st-control-2,#st-control-2 + a{
+	left:20%;
+}
+#st-control-3,#st-control-3 + a{
+	left:40%;
+}
+#st-control-4,#st-control-4 + a{
+	left:60%;
+}
+#st-control-5,#st-control-5 + a{
+	left:80%;
+}
+.st-container input:checked + a,
+.st-container input:checked:hover + a{
+	background:#821134;
+}
+.st-container input:checked + a:after{
+	content:"";
+	width:0;
+	height:0;
+	overflow:hidden;
+	border:20px solid transparent;
+	border-bottom-color:#821134;
+	position:absolute;
+	bottom:100%;
+	left:50%;
+	margin-left:-20px;
+}
+.st-container input:hover + a{
+	background:#ad244f;
+}
+
+.st-panel,
+.st-scroll{
+	width:100%;
+	height:100%;
+	position:relative;
+}
+
+.st-scroll{
+	left:0;
+	top:0;
+	transform:translate3d(0,0,0);
+	-webkit-transform:translate3d(0,0,0);
+	-o-transform:translate3d(0,0,0);
+	-moz-transform:translate3d(0,0,0);
+	-ms-transform:translate3d(0,0,0);
+	--backface-visibility:hidden;/*元素不面向屏幕的时候的可见性*/
+	---webkit-backface-visibility:hidden;
+	transition:all 0.6s ease-in-out;/*过渡 0.6秒 速度：快-慢-快*/
+	-webkit-transition:all 0.6s ease-in-out;
+	-o-transition:all 0.6s ease-in-out;
+	-moz-transition:all 0.6s ease-in-out;
+	-ms-transition:all 0.6s ease-in-out;
+}
+
+.st-panel{
+	background:#fff;
+	overflow:hidden;
+}
+
+#st-control-1:checked ~ .st-scroll{/*~不强调紧跟其后，并列在其后面的就成*/
+	transform:translateY(0%);
+	-webkit-transform:translateY(0%);
+	-moz-transform:translateY(0%);
+	-o-transform:translateY(0%);
+	-ms-transform:translateY(0%);
+
+}
+
+#st-control-2:checked ~ .st-scroll{
+	transform:translateY(-100%);
+	-webkit-transform:translateY(-100%);
+	-moz-transform:translateY(-100%);
+	-o-transform:translateY(-100%);
+	-ms-transform:translateY(-100%);
+}
+
+#st-control-3:checked ~ .st-scroll{
+	transform:translateY(-200%);
+	-webkit-transform:translateY(-200%);
+	-moz-transform:translateY(-200%);
+	-o-transform:translateY(-200%);
+	-ms-transform:translateY(-200%);
+}
+
+#st-control-4:checked ~ .st-scroll{
+	transform:translateY(-300%);
+	-webkit-transform:translateY(-300%);
+	-moz-transform:translateY(-300%);
+	-o-transform:translateY(-300%);
+	-ms-transform:translateY(-300%);
+}
+
+#st-control-5:checked ~ .st-scroll{
+	transform:translateY(-400%);
+	-webkit-transform:translateY(-400%);
+	-moz-transform:translateY(-400%);
+	-o-transform:translateY(-400%);
+	-ms-transform:translateY(-400%);
+}
+
+.st-desc{
+	width:200px;
+	height:200px;
+	background:#fa96b5;
+	position:absolute;
+	left:50%;
+	top:0;
+	margin-left:-100px;
+	transform:translateY(-50%) rotate(45deg);
+	-webkit-transform:translateY(-50%) rotate(45deg);
+	-o-transform:translateY(-50%) rotate(45deg);
+	-moz-transform:translateY(-50%) rotate(45deg);
+	-ms-transform:translateY(-50%) rotate(45deg);
+}
+
+[data-icon]:after{/*查找所有含义data-icon属性的元素,在其后添加内容*/
+	content:attr(data-icon);
+	width:200px;
+	height:200px;
+	color:#fff;
+	font-size:90px;
+	text-align:center;
+	line-height:200px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-100px 0 0 -100px;
+	transform:rotate(-45deg) translateY(25%);
+	-moz-transform:rotate(-45deg) translateY(25%);
+	-webkit-transform:rotate(-45deg) translateY(25%);
+	-o-transform:rotate(-45deg) translateY(25%);
+	-ms-transform:rotate(-45deg) translateY(25%);
+	font-family:"raphaelicons";
+	text-shadow:1px 1px 1px rgba(151,24,64,0.2);
+}
+.st-panel h2{
+	color:#e23a6e;
+	font-size:54px;
+	line-height:50px;
+	text-align:center;
+	font-weight:900;
+	width:80%;
+	position:absolute;
+	left:10%;
+	top:20%;
+	text-shadow:1px 1px 1px rgba(151,24,64,0.2);
+	backface-visibility:hidden;
+	-webkit-backface-visibility:hidden;
+}
+#st-control-1:checked ~ .st-scroll #st-panel-1 h2,
+#st-control-2:checked ~ .st-scroll #st-panel-2 h2,
+#st-control-3:checked ~ .st-scroll #st-panel-3 h2,
+#st-control-4:checked ~ .st-scroll #st-panel-4 h2,
+#st-control-5:checked ~ .st-scroll #st-panel-5 h2{
+	animation:moveDown 0.6s ease-in-out 0.2s backwards;/*动画是moveDown，在0.6s内完成，延迟0.2s开始，动画在播放之前是开始状态*/
+	-webkit-animation:moveDown 0.6s ease-in-out 0.2s backwards;
+	-o-animation:moveDown 0.6s ease-in-out 0.2s backwards;
+	-moz-animation:moveDown 0.6s ease-in-out 0.2s backwards;
+	-ms-animation:moveDown 0.6s ease-in-out 0.2s backwards;
+}
+@keyframes moveDown{/*定义moveDown动画*/
+	0%{
+		transform:translateY(-40px);
+		opacity:0;
+	}
+	100%{
+		transform:translateY(0);
+		opacity:1;
+	}
+}
+@-webkit-keyframes moveDown{/*定义moveDown动画*/
+	0%{
+		-webkit-transform:translateY(-40px);
+		opacity:0;
+	}
+	100%{
+		-webkit-transform:translateY(0);
+		opacity:1;
+	}
+}
+@-moz-keyframes moveDown{/*定义moveDown动画*/
+	0%{
+		-moz-transform:translateY(-40px);
+		opacity:0;
+	}
+	100%{
+		-moz-transform:translateY(0);
+		opacity:1;
+	}
+}
+@-o-keyframes moveDown{/*定义moveDown动画*/
+	0%{
+		-o-transform:translateY(-40px);
+		opacity:0;
+	}
+	100%{
+		-o-transform:translateY(0);
+		opacity:1;
+	}
+}
+@-ms-keyframes moveDown{/*定义moveDown动画*/
+	0%{
+		-ms-transform:translateY(-40px);
+		opacity:0;
+	}
+	100%{
+		-ms-transform:translateY(0);
+		opacity:1;
+	}
+}
+
+@keyframes moveUp{
+	0%{
+		opacity:0;
+		transform:translateY(40px);
+	}
+	100%{
+		opacity:1;
+		transform:translateY(0);
+	}
+}
+@-webkit-keyframes moveUp{
+	0%{
+		opacity:0;
+		-webkit-transform:translateY(40px);
+	}
+	100%{
+		opacity:1;
+		-webkit-transform:translateY(0);
+	}
+}
+@-moz-keyframes moveUp{
+	0%{
+		opacity:0;
+		-moz-transform:translateY(40px);
+	}
+	100%{
+		opacity:1;
+		-moz-transform:translateY(0);
+	}
+}
+@-o-keyframes moveUp{
+	0%{
+		opacity:0;
+		-o-transform:translateY(40px);
+	}
+	100%{
+		opacity:1;
+		-o-transform:translateY(0);
+	}
+}
+@-ms-keyframes moveUp{
+	0%{
+		opacity:0;
+		-ms-transform:translateY(40px);
+	}
+	100%{
+		opacity:1;
+		-ms-transform:translateY(0);
+	}
+}
+
+.st-color{
+	background:#fa96b5;
+}
+
+.st-color .st-desc{
+	background:#fff;
+}
+.st-color [data-icon]:after{
+	color:#fa96b5;
+}
+.st-color h2{
+	color:#fff;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.1);
+}
+.st-color p{
+	color:rgba(255,255,255,0.8);
+}
+
+
+@media screen and (max-width:520px){
+	.st-panel h2{
+		font-size:42px;
+	}
+	.st-panel p{
+		width:90%;
+		left:10%;
+		margin-top:0;
+	}
+	.st-container > a{
+		font-size:13px;
+	}
+}
+
+@media screen and (max-width:360px){
+	.st-panel h2{
+		font-size:30px;
+	}
+	.st-panel p{
+		width:90%;
+		left:10%;
+		margin-top:0;
+	}
+	.st-container > a{
+		font-size:10px;
+	}
+	.st-desc{
+		width:120px;
+		height:120px;
+		margin-left:-60px;
+	}
+	[data-icon]:after{
+		font-size:60px;
+		transform:rotate(-45deg) translateY(15%);
+		-moz-transform:rotate(-45deg) translateY(15%);
+		-webkit-transform:rotate(-45deg) translateY(15%);
+		-o-transform:rotate(-45deg) translateY(15%);
+		-ms-transform:rotate(-45deg) translateY(15%);
+	}
+}
+
+
+
+
+
+.st-panel-main{
+	position:absolute;
+	width:50%;
+	left:25%;
+	top:40%;
+	font-size:16px;
+	line-height:22px;
+	text-align:center;
+	backface-visibility:hidden;
+	-webkit-backface-visibility:hidden;
+	color:#8b8b8b;
+}
+.main-email:link{
+	color:rgb(247,77,128);
+	text-decoration:none;
+}
+.main-email:hover{
+	color:rgb(143,7,48);
+	font-weight:700;
+	text-decoration:none;
+}
+#st-control-1:checked ~ .st-scroll #st-panel-1 .st-panel-main,
+#st-control-2:checked ~ .st-scroll #st-panel-2 .st-panel-main,
+#st-control-3:checked ~ .st-scroll #st-panel-3 .st-panel-main,
+#st-control-4:checked ~ .st-scroll #st-panel-4 .st-panel-main,
+#st-control-5:checked ~ .st-scroll #st-panel-5 .st-panel-main{
+	animation:moveUp 0.6s ease-in-out 0.2s backwards;/*动画是moveDown，在0.6s内完成，延迟0.2s开始，动画在播放之前是开始状态*/
+	-webkit-animation:moveUp 0.6s ease-in-out 0.2s backwards;
+	-o-animation:moveUp 0.6s ease-in-out 0.2s backwards;
+	-moz-animation:moveUp 0.6s ease-in-out 0.2s backwards;
+	-ms-animation:moveUp 0.6s ease-in-out 0.2s backwards;
+}
+.st-panel-w{
+	font-weight:800;
+}
+#st-panel-1 .st-panel-main,
+#st-panel-3 .st-panel-main,
+#st-panel-5 .st-panel-main{
+	line-height:30px;
+}
+.st-color .st-panel-main,
+.st-color .st-panel-main a{
+	color:rgba(255,255,255,0.8);
+}
+#st-panel-2 .st-panel-main,
+#st-panel-5 .st-panel-main{
+	text-align:left;
+}
+
+#st-panel-5 .st-panel-main a{
+	position:absolute;
+	left:60%;
+	font-size:20px;
+}
+#st-panel-5 .st-panel-main a:link{
+	font-weight:700;
+	opacity:1;
+	color:rgb(247,77,128);
+}
+#st-panel-5 .st-panel-main a:hover{
+	font-weight:700;
+	color:rgb(143,7,48);
+	opacity:1;
+}
+
+#st-panel-2 .st-panel-main ul li a{
+	font-weight:700;
+}
+#st-panel-2 .st-panel-main ul li a:hover{
+	background:#ad244f;
+}
+
+#st-panel-2 .st-panel-main ul li a:hover{
+	background:#ad244f;
+}
+
+ .st-panel-main-info{
+	width:100%;
+	height:120%;
+	visibility:hidden;
+	position:absolute;
+	top:-100px;
+	z-index:1;
+	left:200px;
+	background:#e23a6e;
+	opacity:0.8;
+	color:white;
+}
+
+.st-panel-main-info table tr{
+	border-bottom:1px solid rgba(255,255,255,1);
+}
+.st-panel-main-info table tr th{
+	width:150px;
+}
+
+.st-panel-main .st-panel-main-imgs{
+	width:100%;
+	height:100%;
+}
+.st-panel-main .st-panel-main-imgs a{
+	width:200px;
+	height:200px;
+	display:inline-block;
+	opacity:0.7;
+}
+
+.st-panel-main .st-panel-main-imgs a:hover{
+	opacity:1;
+	font-weight:700;
+}
+.st-panel-main .st-panel-main-imgs a span{
+	width:200px;
+	height:40px;
+	line-height:40px;
+	display:inline-block;
+	font-size:20px;
+	line-height:40px;
+}

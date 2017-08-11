@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>HUAWEI-V8</title>
+  <link rel="stylesheet" href="../css/V8.css" type="text/css" />
+ </head>
+ <body>
+   <div id="show">
+		<span class="run showbody" id="run" onMouseOver="mouseOver()" onMouseOut="mouseOut()"></span>
+		<span class="end showbody" id="end"></span>
+		<span class="wait showbody" id="wait"></span>
+    </div>
+
+
+<script>
+	var runDiv = document.getElementById("run");
+	var waitD= document.getElementById("wait");
+	var waitFlag = 0;
+	
+	//runDiv.style.backgroundPositionY='0px';
+	//按照指定的周期（以毫秒计）来调用函数或计算表达式。
+	var intW=self.setInterval("waiting()",400);
+	var intR=self.setInterval("runing()",400);//每400毫秒调用一次runing()函数，实现run位置的右移
+	var intR1=0;//mouseOut()处调用setInterval的返回Id
+	var mouseOutFlag=0;//是否调用mouseOut()标志
+	/**var mycars=new Array()
+		mycars[0]="Saab"
+		mycars[1]="Volvo"
+		mycars[2]="BMW"*/
+	var intRM=new Array();
+	var RMIndex = 0;
+	//alert(intR1);
+	/*带参数的函数调用示例
+	a(3);
+	var intW=self.setInterval("a('3')",800);
+	function a(n){
+		alert(n);
+	}*/
+
+	
+//指针悬停时，更换背景图片图片，停止运动
+	function mouseOver(){
+		//如果不是第一次，则停止上一次的setInterval
+		if(mouseOutFlag!=0){
+			window.clearInterval(intR1);
+		}
+		runDiv.style.backgroundImage="url(../images/hwv8/hover.png)";//设置背景图片
+		runDiv.style.backgroundPositionY='0px';//设置图片在Y轴上的位置
+		runDiv.style.backgroundPosition='center center';//设置图片位置为上下居中，左右居中
+		window.clearInterval(intR);
+	}
+	function mouseOut(){
+		mouseOutFlag=1;
+		//run从停止的地方继续运动，且图片从停止的地方继续切换
+		runDiv.style.backgroundImage="url(../images/hwv8/run.png)";//设置设置背景图片
+		runDiv.style.backgroundPositionY='0px';//设置图片在Y轴上的位置
+		//从停止的地方继续向右移动
+		intR1=self.setInterval("runing()",400);
+		/*var si=self.setInterval("runing()",400);
+		intRM[RMIndex]=si;
+		RMIndex++;*/
+		//alert(intR1);
+		//var leftR = parseInt(runDiv.style.left);//获取run的左外边距，同时将像素转换为数字
+	}
+
+	//wait背景图片切换
+	function waiting(){
+		if(waitFlag%4==0){
+			waitD.style.backgroundPositionY='0px';
+		}else if(waitFlag%4==1){
+			waitD.style.backgroundPositionY='-56px';
+		}else if(waitFlag%4==2){
+			waitD.style.backgroundPositionY='-112px';
+		}else if(waitFlag%4==3){
+			waitD.style.backgroundPositionY='-168px';
+		}
+		waitFlag++;
+	}
+	//向右移动
+	function runing(){
+		//runDiv.offsetLeft：返回元素的水平偏移位置。
+		//runDiv.style.left：置元素的左边缘距离父元素左边缘的左边或右边的距离
+		var r = 80;//向右移动的偏移量--即每次右移80px
+		//1 向右运动
+		runDiv.style.left = runDiv.offsetLeft+r+"px";//run的左边距设置为run的宽度+80px，即每次右移80px
+
+		//2 图片切换
+		var left = parseInt(runDiv.style.left);//将返回的像素字符串转换为数字，如60px -> 60
+		runChange(left,r);
+		
+		//4 停止运动，end可见
+		runStop(left);	
+	}
+
+	
+	//run背景图片切换
+	function runChange(left,r){
+		//var r = 80;
+		if((left/r)%3==0){
+			runDiv.style.backgroundPositionY='0px';
+		}else if((left/r)%3==1){
+			runDiv.style.backgroundPositionY='-40px';
+		}else if((left/r)%3==2){
+			runDiv.style.backgroundPositionY='-80px';
+		}
+	}
+	
+	function runStop(left){
+		var showWidth = parseInt(document.getElementById("show").offsetWidth);//获取show的宽度
+		var runWidth = parseInt(runDiv.offsetWidth);//获取run的宽度
+		if(left==(showWidth-runWidth) || left>(showWidth-runWidth)){//运动到靠近end时：run的左外边距，小于等于。。。
+			if(mouseOutFlag==1){//调用了mouseOut()函数，则停止
+				/*for (i=0;i<intRM.length;i++)
+				{
+					window.clearInterval(intRM[i]);//从mouseOut()处停止调用runing函数，
+					//如果只是一个变量的话，多次mouseOut()，就有多次不同的id，停止的只是最后的一个，之前的木有停止
+					//试试看数组
+				}*/	
+				window.clearInterval(intR1);
+			}
+			window.clearInterval(intR);//从mouseOut()处停止调用runing函数
+			window.clearInterval(intW);//停止调用waiting函数
+			runDiv.style.visibility="hidden";//run不可见
+			waitD.style.visibility="hidden";//wait也不可见
+			document.getElementById("end").style.visibility="visible";//end可见
+		}
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+*{margin:0;
+padding:0;}
+
+body{
+	background:white;
+}
+
+.showMain{
+	width:1200px;
+	margin:0 auto;
+	height:133px;
+	position:relative;
+	border-bottom:2px solid green;
+}
+.showContainer, .show{
+	display:block;
+	position:absolute;
+}
+.showContainer{
+	height:40px;
+	width:100%;
+	top:90px;
+}
+.show{
+	height:40px;
+}
+.showOne{
+	width:94px;
+	background:url(../images/TM/tianmao01.png) no-repeat;
+}
+.showTwo{
+	display:none;
+	width:163px;
+	background:url(../images/TM/tianmao02.png) no-repeat;
+	left:1064.6px;
+}
+.showThree{
+	display:none;
+	width:163px;
+	background:url(../images/TM/tianmao03.png) no-repeat;
+	left:1064.6px;
+}
+
+.show-right-top{
+	width:90px;
+	height:90px;
+	position:absolute;
+	top:1px;
+	right:1px;
+}
+
+.show-right-top .right-top{
+	display:inline-block;
+	width:100%;
+	height:100%;
+	background:red;
+	background:url(../images/TM/rightTop.png) 0 0 no-repeat;
+	transition:width 0.6s;
+	cursor:pointer;
+}
+.show-right-top .right-top:link{
+	
+}
+.show-right-top .close-right-top{
+	display:none;
+	width:14px;
+	height:14px;
+	position:absolute;
+	top:59px;
+	right:59px;
+	z-index:2;
+	cursor:pointer;
+}

@@ -1,0 +1,42 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+		margin:0px 50px;
+}
+#show{
+	position:relative;
+	top:100px;
+	height:100px;
+	margin:auto;
+	border-bottom:4px solid green;
+}	
+
+.showbody{
+	height:40px;
+	position:absolute;
+	display:block;
+	bottom:0px;
+	background-repeat:no-repeat;
+}
+.run{
+	background-image:url(../images/hwv8/run.png) ;
+	background-position:0px 0px;
+	width:226px;
+	height:40px;
+}
+.wait{
+	background-image:url(../images/hwv8/wait.png) ;
+	background-position:0px 0px;
+	width:90px;
+	height:56px;
+	right:0px;
+}
+.end{
+	background-image:url(../images/hwv8/end.png) ;
+	width:90px;
+	height:56px;
+	right:0px;
+	visibility:hidden;
+}
